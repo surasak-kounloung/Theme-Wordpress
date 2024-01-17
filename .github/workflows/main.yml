@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      main
+
+jobs:
+    deploy_job:
+      runs-on: ubuntu-latest
+      name: deploy
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          
+        - name: deploy file
+          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+          with:
+            username: ${{ secrets.USER }} 
+            server: ${{ secrets.SERVER }} 
+            ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+            local_path: './*'
+            remote_path: '/app/www/beautyrich.net/wp-content/themes/vsqpbn'
+            sftpArgs: '-o ConnectTimeout=5'
