@@ -17,6 +17,6 @@ jobs:
             username: ${{ secrets.USER }} 
             server: ${{ secrets.SERVER }} 
             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
-            local_path: './templates/*'
-            remote_path: '/app/www/beautyrich.net/wp-content/themes/vsqpbn'
+            local_path: './*'
+            remote_path: '/app/www/beautyrich.net/wp-content/themes/vsqpbn/'
             sftpArgs: '-o ConnectTimeout=5'
