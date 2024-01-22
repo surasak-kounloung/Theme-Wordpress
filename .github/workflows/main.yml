@@ -10,13 +10,6 @@ jobs:
      steps:
        - name: Checkout
          uses: actions/checkout@v2
-
-       - name: Find Changed Files
-         id: find_changed
-         run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-          echo "Changed files: $changed_files"
-          echo "::set-output name=files::$changed_files"
           
        - name: Deploy Files
          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -24,6 +17,6 @@ jobs:
              username: ${{ secrets.USERNAME }}
              server: ${{ secrets.HOST }}
              ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
-             local_path: '${{ steps.find_changed.outputs.files }}'
+             local_path: './*'
              remote_path: '/app/www/beautyrich.net/wp-content/themes/vsqpbn/'
              sftpArgs: '-o ConnectTimeout=5'
